@@ -7,6 +7,7 @@ data "template_file" "container_definitions" {
     image              = var.image
     cpu                = var.cpu
     memory             = var.memory
+    volume             = var.volume
     volume_name        = var.name
     volume_path        = "/data"
     environment        = jsonencode(var.environment)

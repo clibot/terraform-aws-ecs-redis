@@ -1,6 +1,9 @@
 [{
   "name": "${name}",
   "image": "${image}",
+  %{ if volume }
+  "command": ["redis-server", "--appendonly", "yes"],
+  %{ endif }
   "cpu": ${cpu},
   "memory": ${memory},
   "environment": [
@@ -10,11 +13,11 @@
     { "name": "_", "value": "_" }
   ],
   "portMappings": [{
-    "containerPort": 27017,
-    "hostPort": 27017,
+    "containerPort": 6379,
+    "hostPort": 6379,
     "protocol": "tcp"
   }],
-  %{ if var.volume }
+  %{ if volume }
   "mountPoints": [{
     "sourceVolume": "${volume_name}",
     "containerPath": "${volume_path}",
