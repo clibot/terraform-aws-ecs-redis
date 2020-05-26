@@ -1,0 +1,32 @@
+[{
+  "name": "${name}",
+  "image": "${image}",
+  "cpu": ${cpu},
+  "memory": ${memory},
+  "environment": [
+    %{ for variable in jsondecode(environment) ~}
+      { "name": "${variable.name}", "value": "${variable.value}" },
+    %{ endfor ~}
+    { "name": "_", "value": "_" }
+  ],
+  "portMappings": [{
+    "containerPort": 27017,
+    "hostPort": 27017,
+    "protocol": "tcp"
+  }],
+  %{ if var.volume }
+  "mountPoints": [{
+    "sourceVolume": "${volume_name}",
+    "containerPath": "${volume_path}",
+    "readOnly": false
+  }],
+  %{ endif }
+  "logConfiguration": {
+    "logDriver": "awslogs",
+    "options": {
+      "awslogs-group": "${logs_group}",
+      "awslogs-stream-prefix": "${logs_stream_prefix}",
+      "awslogs-region": "${logs_region}"
+    }
+  }
+}]
