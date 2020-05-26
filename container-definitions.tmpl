@@ -25,11 +25,13 @@
   }],
   %{ endif }
   "logConfiguration": {
+    %{ if cloudwatch >= 1 }
     "logDriver": "awslogs",
     "options": {
       "awslogs-group": "${logs_group}",
       "awslogs-stream-prefix": "${logs_stream_prefix}",
       "awslogs-region": "${logs_region}"
     }
+    %{ endif }
   }
 }]

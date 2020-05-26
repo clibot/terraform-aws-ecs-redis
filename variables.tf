@@ -43,6 +43,11 @@ variable "volume_size" {
   default = 0
 }
 
+variable "cloudwatch" {
+  type    = number
+  default = 0
+}
+
 variable "environment" {
   type    = list(object({ name = string, value = string }))
   default = []

@@ -11,6 +11,7 @@ data "template_file" "container_definitions" {
     volume_name        = var.name
     volume_path        = "/data"
     environment        = jsonencode(var.environment)
+    cloudwatch         = var.cloudwatch
     logs_group         = var.name
     logs_stream_prefix = var.name
     logs_region        = data.aws_region.this.name
