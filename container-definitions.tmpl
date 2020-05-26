@@ -2,7 +2,10 @@
   "name": "${name}",
   "image": "${image}",
   %{ if volume }
-  "command": ["redis-server", "--appendonly", "yes"],
+  "command": [
+    "redis-server",
+    "--appendonly yes"
+  ],
   %{ endif }
   "cpu": ${cpu},
   "memory": ${memory},

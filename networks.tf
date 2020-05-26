@@ -38,6 +38,7 @@ resource "aws_lb_target_group" "this" {
 
   health_check {
     enabled  = true
+    protocol = "TCP"
     interval = 30
   }
 }
